@@ -445,7 +445,10 @@ improved = ImageEnhance.Color(rgb_im).enhance(SF)
 # Convert to array
 rgb_arr = np.array(improved)
 # Print
+o = open("output.txt", "w")
+
 for line,l in zip(rgb_arr, img.astype(int)):
+    o.write('$display("')
     s = list(chars[l])
     for pixel,p in zip(line,s):
         r, g, b = pixel
@@ -458,6 +461,8 @@ for line,l in zip(rgb_arr, img.astype(int)):
             c, rgb = rgb2short(colorHEX)
             pix = "\x1b[38;5;{}m{}\x1b[0m".format(c,p)
         print(pix, end="")
+        o.write(pix)
     print()
+    o.write('");\n')
 
-
+o.close()
