@@ -374,7 +374,8 @@ chars = np.asarray(list(reversed(orig_chars)))
 parser = argparse.ArgumentParser(description='Transforms an image into an ASCII style colored text on your terminal.', epilog='Only the input image is mandatory for the script to work.')
 
 group_input = parser.add_argument_group('Basic arguments')
-group_input.add_argument("-i", "--input", nargs='?', required=True, help="Path to the image in jpg format.")
+group_input.add_argument("-i", "--input", nargs='?', required=True, help="Path to the image in jpg/png format.")
+group_input.add_argument("-o", "--output", nargs='?', required=False, default=None, help="Path to the output text file.")
 group_input.add_argument("-m", "--mode", nargs='?', required=False, default="256", choices=["256","RGB"], help="Color palette used for the output : RGB or 256 colors. If your terminal supports TrueColour, go for RGB.")
 group_input.add_argument("-a", "--ascii", nargs='?', required=False, default=1.0, type=float, metavar="FLOAT", help="ASCII level correction factor. Changes the assignment of a pixel to a higher or lower level character.")
 group_input.add_argument("-c", "--color", nargs='?', required=False, default=1.0, type=float, metavar="FLOAT", help="Color saturation correction factor. Changes the intensity of colors on the output.")
@@ -387,6 +388,7 @@ group_args.add_argument("-p", "--pixel", nargs='?', required=False, default=1.9,
 args = parser.parse_args()
 
 f    = args.input
+o    = args.output 
 SC   = args.scale
 GCF  = args.ascii
 WCF  = args.pixel
@@ -445,10 +447,12 @@ improved = ImageEnhance.Color(rgb_im).enhance(SF)
 # Convert to array
 rgb_arr = np.array(improved)
 # Print
-o = open("output.txt", "w")
+if o is not None:
+    o = open("output.txt", "w")
 
 for line,l in zip(rgb_arr, img.astype(int)):
-    o.write('$display("')
+    if o is not None:
+        o.write('$display("')
     s = list(chars[l])
     for pixel,p in zip(line,s):
         r, g, b = pixel
@@ -461,8 +465,10 @@ for line,l in zip(rgb_arr, img.astype(int)):
             c, rgb = rgb2short(colorHEX)
             pix = "\x1b[38;5;{}m{}\x1b[0m".format(c,p)
         print(pix, end="")
-        o.write(pix)
+        if o is not None:
+            o.write(pix)
     print()
-    o.write('");\n')
+    if o is not None:
+        o.write('");\n')
 
 o.close()
