@@ -1,5 +1,5 @@
 # asciipainter
-Transforms an image into an ASCII style colored text on your terminal.
+Transforms an image into an ASCII style colored text on your terminal and output it to text file.
 
 # Requirements
 * Python 3
@@ -11,9 +11,10 @@ Transforms an image into an ASCII style colored text on your terminal.
 See https://gist.github.com/XVilka/8346728 for more info on terminals.
 
 # Usage
-`./asciipainter.py [-h] -i [INPUT] [-m [{256,RGB}]] [-a [FLOAT]] [-c [FLOAT]] [--auto [{h,w}]] [-s [FLOAT]] [-p [FLOAT]]`
+`./asciipainter.py [-h] -i [INPUT] -o [OUTPUT] [-m [{256,RGB}]] [-a [FLOAT]] [-c [FLOAT]] [--auto [{h,w}]] [-s [FLOAT]] [-p [FLOAT]]`
 * -h, --help : Show the help message and exit.
 * -i [INPUT], --input [INPUT] : Path to the image in jpg format.
+* -o [OUTPUT], --output [OUTPUT] : Path to the output text file.
 * -m [{256,RGB}], --mode [{256,RGB}] : Color palette used for the output : RGB or 256 colors.If your terminal supports TrueColour, go for RGB.
 * -a [FLOAT], --ascii [FLOAT] : ASCII level correction factor. Changes the assignment of a pixel to a higher or lower level character.
 * -c [FLOAT], --color [FLOAT] : Color saturation correction factor. Changes the intensity of colors on the output.
