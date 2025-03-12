@@ -471,4 +471,5 @@ for line,l in zip(rgb_arr, img.astype(int)):
     if o is not None:
         o.write('");\n')
 
-o.close()
+if o is not None:
+    o.close()
