@@ -61,4 +61,4 @@ If most of the background colors are skipped, your terminal doesn't support True
 Original (From BanG Dream! It's MyGO!!!!! - Episode 08)
 ![alt text](https://github.com/jason122490/asciipainter/blob/13431039d43af4eba4d293260d2c3269965e7e7d/example/error_original.jpg "Original image")
 Output with `ascii level set to 2.0`, in RGB colors
-![alt text](https://github.com/jason122490/asciipainter/blob/13431039d43af4eba4d293260d2c3269965e7e7d/example/error.jpg "ASCII image")
+![alt text](https://github.com/jason122490/asciipainter/blob/47045bab6b490bb530a9eb777a9352163be68eac/example/error.jpg "ASCII image")
